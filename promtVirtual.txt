@@ -1,0 +1,102 @@
+Saya ingin kamu membuat source code aplikasi Android lengkap dan WORK 
+untuk Dual Space / Clone App yang HANYA berfungsi untuk 1 aplikasi saja, 
+yaitu Mobile Legends: Bang Bang (MLBB).
+
+SPESIFIKASI APLIKASI:
+
+1. NAMA APLIKASI: "ML Dual Space" (atau nama lain yang kamu sarankan)
+2. PACKAGE NAME: com.mldual.space
+3. MIN SDK: 24 (Android 7.0)
+4. TARGET SDK: 34 (Android 14)
+5. BAHASA: Kotlin (utama) + Java untuk native hook
+6. UI: Material Design 3, tema dark mode gaming
+
+FITUR UTAMA YANG HARUS ADA:
+
+A. Virtual Engine / Sandbox
+   - Menggunakan VirtualApp (VA) atau VirtualXposed atau 
+     pendekatan Multi-User / Work Profile
+   - Bisa menginstall dan menjalankan 2 instance MLBB secara paralel
+   - Support Android 7 sampai Android 14 (jelaskan limitasi tiap versi)
+   - Support arsitektur ARM64 (wajib) dan ARMv7 (opsional)
+
+B. Manajemen Kloning
+   - Tombol "Add MLBB" untuk clone aplikasi
+   - Deteksi otomatis jika MLBB sudah terinstall di device
+   - Bisa buat maksimal 3 clone (main + 2 clone)
+   - Ikon clone dengan badge angka (1, 2, 3)
+   - Uninstall / delete clone tanpa menghapus MLBB asli
+
+C. Isolasi Data
+   - Data OBB, cache, dan shared_prefs terpisah per clone
+   - Virtual IMEI, Android ID, MAC Address, dan Device ID 
+     untuk menghindari deteksi "same device" dari Moonton
+   - Virtual storage path: /data/data/com.mldual.space/virtual/[clone_id]/
+
+D. Kinerja & Kompatibilitas
+   - Support GPU rendering (OpenGL ES 3.0 & Vulkan)
+   - Tidak lag saat 2 instance MLBB berjalan bersamaan
+   - Support game mode (matikan notifikasi, boost CPU)
+
+E. Keamanan (PENTING)
+   - Jangan sertakan fitur cheat / hack / maphack
+   - Aplikasi hanya untuk menjalankan 2 akun MLBB di 1 HP
+   - Sertakan disclaimer bahwa penggunaan bisa melanggar ToS Moonton
+
+F. Permission yang dibutuhkan
+   - QUERY_ALL_PACKAGES
+   - MANAGE_EXTERNAL_STORAGE (opsional)
+   - FOREGROUND_SERVICE
+   - REQUEST_INSTALL_PACKAGES
+
+STRUKTUR PROJECT YANG DIMINTA:
+
+ml-dual-space/
+├── app/
+│   ├── src/main/
+│   │   ├── java/com/mldual/space/
+│   │   │   ├── MainActivity.kt
+│   │   │   ├── CloneManager.kt
+│   │   │   ├── virtual/
+│   │   │   │   ├── VirtualCore.kt
+│   │   │   │   ├── VirtualApp.kt
+│   │   │   │   └── DeviceSpoofer.kt
+│   │   │   ├── ui/
+│   │   │   │   ├── AddCloneActivity.kt
+│   │   │   │   ├── CloneListAdapter.kt
+│   │   │   │   └── SplashActivity.kt
+│   │   │   └── utils/
+│   │   │       ├── PackageUtils.kt
+│   │   │       └── RootUtils.kt
+│   │   ├── res/
+│   │   │   ├── layout/
+│   │   │   ├── drawable/
+│   │   │   ├── values/
+│   │   │   └── xml/
+│   │   └── AndroidManifest.xml
+│   └── build.gradle.kts
+├── build.gradle.kts
+├── settings.gradle.kts
+└── gradle.properties
+
+LIBRARY YANG HARUS DIPAKAI:
+- com.github.FBlackFire.AndroidVirtualApp:virtualapp:1.0.0 
+  (atau alternative: com.lody.virtual)
+- androidx.appcompat
+- com.google.android.material
+- androidx.recyclerview
+- kotlinx.coroutines
+- Glide (untuk load icon)
+
+OUTPUT YANG SAYA INGINKAN:
+1. Source code lengkap setiap file (siap compile di Android Studio)
+2. build.gradle.kts yang sudah dikonfigurasi
+3. AndroidManifest.xml lengkap dengan semua permission
+4. Instruksi build step-by-step (dari clone project sampai install APK)
+5. Penjelasan cara kerja VirtualApp untuk clone game berat seperti MLBB
+6. Catatan troubleshooting kalau MLBB crash atau stuck loading
+7. Disclaimer legal & risiko ban dari Moonton
+
+TOLONG BERIKAN KODE YANG BENAR-BENAR WORK, BUKAN PLACEHOLDER. 
+Jelaskan juga bagian yang perlu dimodifikasi manual (misal signing key, 
+proguard rules, atau NDK config).
